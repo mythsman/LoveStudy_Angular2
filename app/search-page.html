@@ -1,0 +1,65 @@
+<div>
+	<div class="weui-cells__title">
+		文档筛选
+	</div>
+	<div  *ngIf="schools" class="weui-cells">
+		<div class="weui-cell weui-cell_select weui-cell_select-after">
+			<div class="weui-cell__hd">
+				<label class="weui-label">
+					当前学校
+				</label>
+			</div>
+			<div class="weui-cell__bd">
+				<select class="weui-select" name="searchSchool" (change)="onSchoolChange($event.target.value)"  dir="rtl">
+					<option *ngFor="let school of schools"  [value]="school.name">{{school.name}}</option>
+				</select>
+			</div>
+		</div>
+		<div class="weui-cell weui-cell_select weui-cell_select-after">
+			<div class="weui-cell__hd">
+				<label class="weui-label">
+					当前学院
+				</label>
+			</div>
+			<div class="weui-cell__bd">
+				<select class="weui-select" name="searchCollege" (change)="onCollegeChange($event.target.value)" dir="rtl">
+					<option *ngFor="let college of curSchool.colleges"  [value]="college.name">{{college.name}}</option>
+				</select>
+			</div>
+		</div>
+		<div class="weui-cell weui-cell_select weui-cell_select-after">
+			<div class="weui-cell__hd">
+				<label class="weui-label">
+					当前课程
+				</label>
+			</div>
+			<div class="weui-cell__bd">
+				<select class="weui-select" name="searchCourse" (change)="onCourseChange($event.target.value)" dir="rtl">
+					<option *ngFor="let course of curCollege.courses"  [value]="course.name">{{course.name}}</option>
+				</select>
+			</div>
+		</div>
+		<a (click)="onSearch()"  href="javascript:;" class="weui-btn weui-btn_primary">
+			开始搜索
+		</a>
+	</div>
+	<div class="weui-cells__title">
+		筛选结果
+	</div>
+	<div class="weui-cells" style="background-color:#ebebf1">
+		<div [routerLink]="['/article-detail',article.fid]" *ngFor="let article of articles" class="weui-panel">
+			<div class="weui-panel__bd">
+				<div class="weui-media-box weui-media-box_text">
+					<h4 class="weui-media-box__title">{{article.name}}</h4>
+					<p class="weui-media-box__desc">{{article.brief}}</p>
+					<ul class="weui-media-box__info">
+						<li class="weui-media-box__info__meta">下载次数：{{article.download}}</li>
+						<li class="weui-media-box__info__meta">文件来源：{{article.source}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<div style="height:70px">
+	</div>
+</div>

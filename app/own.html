@@ -1,0 +1,26 @@
+<div>
+    <div class="weui-cells__title">
+        已上架的文件
+    </div>
+    <div class="weui-cells" style="background-color:#ebebf1">
+        <div [routerLink]="['/article-detail',article.fid]" *ngFor="let article of uploadedArticles" class="weui-panel">
+            <div class="weui-panel__bd">
+                <div class="weui-media-box weui-media-box_text">
+                    <h4 class="weui-media-box__title">{{article.name}}</h4>
+                    <p class="weui-media-box__desc">{{article.brief}}</p>
+                    <ul class="weui-media-box__info">
+                        <li class="weui-media-box__info__meta">下载次数：{{article.download}}</li>
+                        <li class="weui-media-box__info__meta">文件来源：{{article.source}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!uploadedArticles">
+            <div  align="center" class="weui-panel">
+                您当前没有已上架文件。
+            </div>
+        </div>
+    </div>
+    <div style="height:70px">
+    </div>
+</div>

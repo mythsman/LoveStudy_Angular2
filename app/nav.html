@@ -1,0 +1,43 @@
+<div class="weui-tab">
+	<div class="weui-navbar">
+		<div class="weui-navbar__item weui-flex" style="background-color:rgb(32,43,57);color:white">
+			<a (click)="this.location.back();" href="javascript:;" class="weui-btn weui-btn_mini weui-btn_warn"
+			style="background-color:#303b49;" [style.visibility]=" this.localService.getTabHide()?'visible':'hidden'">
+				返回
+			</a>
+			<div class="weui-flex__item weui-btn_mini">
+				{{getTitle()}}
+			</div>
+			<a  href="javascript:;" class="weui-btn weui-btn_mini weui-btn_warn"
+			style="background-color:#303b49;" [style.visibility]="'hidden'">
+				关闭
+			</a>
+		</div>
+	</div>
+	<div class="weui-tab__panel" style="background-color:#ebebf1">
+		<main-page [hidden]="module!=0|| this.localService.getTabHide()"></main-page>
+		<search-page [hidden]="module!=1|| this.localService.getTabHide()"></search-page>
+		<setting-page [hidden]="module!=2|| this.localService.getTabHide()"></setting-page>
+		<router-outlet></router-outlet>
+	</div>
+	<div [style.visibility]=" this.localService.getTabHide()?'hidden':'visible'" class="weui-tabbar">
+		<a  href="javascript:;" class="weui-tabbar__item" [class.weui-bar__item_on]="module==0" (click)="onSelect(0)">
+			<img src="icons/icon_tabbar.png" class="weui-tabbar__icon">
+			<p class="weui-tabbar__label">
+				悦学首页
+			</p>
+		</a>
+		<a href="javascript:;" class="weui-tabbar__item" [class.weui-bar__item_on]="module==1" (click)="onSelect(1)">
+			<img src="icons/icon_tabbar.png" class="weui-tabbar__icon">
+			<p class="weui-tabbar__label">
+				悦学文库
+			</p>
+		</a>
+		<a href="javascript:;" class="weui-tabbar__item" [class.weui-bar__item_on]="module==2" (click)="onSelect(2)">
+			<img src="icons/icon_tabbar.png" class="weui-tabbar__icon">
+			<p class="weui-tabbar__label">
+				我的设置
+			</p>
+		</a>
+	</div>
+</div>

@@ -1,0 +1,48 @@
+<div *ngIf="article" class=" preview">
+    <div class="page__bd">
+        <div class="weui-form-preview">
+            <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">价格 </label><em class="weui-form-preview__value">￥{{article.price}}</em>
+            </div>
+            <div class="weui-form-preview__bd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">名称 </label>
+                    <span class="weui-form-preview__value"> {{article.name}}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">简介 </label>
+                    <span class="weui-form-preview__value">{{article.brief}}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">来源 </label>
+                    <span class="weui-form-preview__value">{{article.source}}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">大小 </label>
+                    <span class="weui-form-preview__value">{{article.size}}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">页数 </label>
+                    <span class="weui-form-preview__value">{{article.page}}页 </span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">下载次数 </label>
+                    <span class="weui-form-preview__value">{{article.download}}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">预览 </label>
+                    <span class="weui-form-preview__value">当前暂不支持预览 </span>
+                </div>
+            </div>
+            <div class="weui-form-preview__ft">
+                <a (click)="toggleFavourite()" *ngIf="article.isFavourite=='1'"
+                   class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">移出收藏</a>
+                <a (click)="toggleFavourite()" *ngIf="article.isFavourite=='0'"
+                   class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">加入收藏</a>
+                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">
+                    立即下载
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
