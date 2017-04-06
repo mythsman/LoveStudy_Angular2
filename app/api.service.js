@@ -9,13 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var local_service_1 = require('./local.service');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
 var ApiService = (function () {
-    function ApiService(http, localService) {
+    function ApiService(http) {
         this.http = http;
-        this.localService = localService;
         this.getListUrl = "http://localhost/getList";
         this.getUserUrl = "http://localhost/getUser";
         this.getArticlesUrl = "http://localhost/getArticles";
@@ -23,12 +21,13 @@ var ApiService = (function () {
         this.toggleFavouriteUrl = "http://localhost/toggleFavourite";
         this.getFavouriteUrl = "http://localhost/getFavourite";
         this.getUploadedUrl = "http://localhost/getUploaded";
+        this.Uid = "32";
     }
     ApiService.prototype.handleError = function (error) {
         return Promise.reject(error.message || error);
     };
     ApiService.prototype.getUser = function () {
-        return this.http.get(this.getUserUrl + "?uid=" + this.localService.getUid())
+        return this.http.get(this.getUserUrl + "?uid=" + this.Uid)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -52,26 +51,26 @@ var ApiService = (function () {
             .catch(this.handleError);
     };
     ApiService.prototype.toggleFavourite = function (fid) {
-        return this.http.get(this.toggleFavouriteUrl + "?uid=" + this.localService.getUid() + "&fid=" + fid)
+        return this.http.get(this.toggleFavouriteUrl + "?uid=" + this.Uid + "&fid=" + fid)
             .toPromise()
             .then()
             .catch(this.handleError);
     };
     ApiService.prototype.getFavourite = function () {
-        return this.http.get(this.getFavouriteUrl + "?uid=" + this.localService.getUid())
+        return this.http.get(this.getFavouriteUrl + "?uid=" + this.Uid)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     ApiService.prototype.getUploaded = function () {
-        return this.http.get(this.getUploadedUrl + "?uid=" + this.localService.getUid())
+        return this.http.get(this.getUploadedUrl + "?uid=" + this.Uid)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     ApiService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, local_service_1.LocalService])
+        __metadata('design:paramtypes', [http_1.Http])
     ], ApiService);
     return ApiService;
 }());

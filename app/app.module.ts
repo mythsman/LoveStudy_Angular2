@@ -5,19 +5,16 @@ import {HttpModule}    from '@angular/http';
 import {RouterModule, Routes} from '@angular/router';
 
 import {NavComponent} from './nav.component';
-import {MainPageComponent} from './main-page.component';
-import {SearchPageComponent} from './search-page.component';
-import {SettingPageComponent} from './setting-page.component';
 import {AboutComponent} from './about.component';
 import {UploadComponent} from './upload.component';
 import {FavouriteComponent} from './favourite.component';
 import {OwnComponent} from './own.component';
 import {ArticleDetailComponent} from './article-detail.component';
 import {ApiService} from "./api.service";
-import {LocalService} from "./local.service";
 
 import { CommonModule }     from '@angular/common';
 import { FileUploadModule } from 'ng2-file-upload';
+import { PdfViewerComponent } from 'ng2-pdf-viewer';
 
 const routes: Routes = [
     {path: 'about', component: AboutComponent},
@@ -35,12 +32,11 @@ const routes: Routes = [
         RouterModule.forRoot(routes),
         CommonModule,
         FileUploadModule,
+
     ],
     declarations: [
+        PdfViewerComponent,
         NavComponent,
-        MainPageComponent,
-        SearchPageComponent,
-        SettingPageComponent,
         AboutComponent,
         UploadComponent,
         FavouriteComponent,
@@ -52,7 +48,6 @@ const routes: Routes = [
     ],
     providers: [
         ApiService,
-        LocalService,
     ]
 })
 export class AppModule {

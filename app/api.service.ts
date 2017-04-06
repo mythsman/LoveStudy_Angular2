@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Article, School, College, Course, User} from './objects';
-import {LocalService} from './local.service';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
@@ -14,7 +13,9 @@ export class ApiService {
     private getFavouriteUrl = "http://localhost/getFavourite";
     private getUploadedUrl = "http://localhost/getUploaded";
 
-    constructor(private http: Http, private localService: LocalService) {
+    Uid="32";
+
+    constructor(private http: Http) {
     }
 
     private handleError(error: any): Promise<any> {
@@ -22,7 +23,7 @@ export class ApiService {
     }
 
     getUser(): Promise<User> {
-        return this.http.get(this.getUserUrl + "?uid=" + this.localService.getUid())
+        return this.http.get(this.getUserUrl + "?uid=" + this.Uid)
             .toPromise()
             .then(response => response.json() as User)
             .catch(this.handleError);
@@ -50,21 +51,21 @@ export class ApiService {
     }
 
     toggleFavourite(fid: string) {
-        return this.http.get(this.toggleFavouriteUrl + "?uid=" + this.localService.getUid() + "&fid=" + fid)
+        return this.http.get(this.toggleFavouriteUrl + "?uid=" +  this.Uid + "&fid=" + fid)
             .toPromise()
             .then()
             .catch(this.handleError);
     }
 
     getFavourite(): Promise<Article[]> {
-        return this.http.get(this.getFavouriteUrl + "?uid=" + this.localService.getUid())
+        return this.http.get(this.getFavouriteUrl + "?uid=" +  this.Uid)
             .toPromise()
             .then(response => response.json() as Article[])
             .catch(this.handleError);
     }
 
     getUploaded(): Promise<Article[]> {
-        return this.http.get(this.getUploadedUrl + "?uid=" + this.localService.getUid())
+        return this.http.get(this.getUploadedUrl + "?uid=" +  this.Uid)
             .toPromise()
             .then(response => response.json() as Article[])
             .catch(this.handleError);

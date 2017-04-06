@@ -14,18 +14,15 @@ var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 var router_1 = require('@angular/router');
 var nav_component_1 = require('./nav.component');
-var main_page_component_1 = require('./main-page.component');
-var search_page_component_1 = require('./search-page.component');
-var setting_page_component_1 = require('./setting-page.component');
 var about_component_1 = require('./about.component');
 var upload_component_1 = require('./upload.component');
 var favourite_component_1 = require('./favourite.component');
 var own_component_1 = require('./own.component');
 var article_detail_component_1 = require('./article-detail.component');
 var api_service_1 = require("./api.service");
-var local_service_1 = require("./local.service");
 var common_1 = require('@angular/common');
 var ng2_file_upload_1 = require('ng2-file-upload');
+var ng2_pdf_viewer_1 = require('ng2-pdf-viewer');
 var routes = [
     { path: 'about', component: about_component_1.AboutComponent },
     { path: 'upload', component: upload_component_1.UploadComponent },
@@ -47,10 +44,8 @@ var AppModule = (function () {
                 ng2_file_upload_1.FileUploadModule,
             ],
             declarations: [
+                ng2_pdf_viewer_1.PdfViewerComponent,
                 nav_component_1.NavComponent,
-                main_page_component_1.MainPageComponent,
-                search_page_component_1.SearchPageComponent,
-                setting_page_component_1.SettingPageComponent,
                 about_component_1.AboutComponent,
                 upload_component_1.UploadComponent,
                 favourite_component_1.FavouriteComponent,
@@ -62,7 +57,6 @@ var AppModule = (function () {
             ],
             providers: [
                 api_service_1.ApiService,
-                local_service_1.LocalService,
             ]
         }), 
         __metadata('design:paramtypes', [])

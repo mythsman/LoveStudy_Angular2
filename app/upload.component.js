@@ -10,12 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var api_service_1 = require('./api.service');
-var local_service_1 = require('./local.service');
 var ng2_file_upload_1 = require('ng2-file-upload');
 var UploadComponent = (function () {
-    function UploadComponent(apiService, localService) {
+    function UploadComponent(apiService) {
         this.apiService = apiService;
-        this.localService = localService;
         this.uploader = new ng2_file_upload_1.FileUploader({
             url: "http://localhost:7777/upload",
             method: "POST",
@@ -46,11 +44,6 @@ var UploadComponent = (function () {
             _this.curCollege = _this.curSchool.colleges[0];
             _this.curCourse = _this.curCollege.courses[0];
         });
-        this.localService.setTabHide(true);
-        this.localService.setTitle("我要上传");
-    };
-    UploadComponent.prototype.ngOnDestroy = function () {
-        this.localService.setTabHide(false);
     };
     UploadComponent.prototype.onSchoolChange = function (schoolName) {
         this.curSchool = this.schools.find(function (op) { return op.name == schoolName; });
@@ -66,7 +59,7 @@ var UploadComponent = (function () {
             selector: "upload",
             templateUrl: 'app/upload.html',
         }), 
-        __metadata('design:paramtypes', [api_service_1.ApiService, local_service_1.LocalService])
+        __metadata('design:paramtypes', [api_service_1.ApiService])
     ], UploadComponent);
     return UploadComponent;
 }());

@@ -27,6 +27,4 @@ export class User{
 	name:string;
 	level:string;
 	point:string;
-	school:string;
-	college:string;
 }

@@ -29,10 +29,6 @@
                     <label class="weui-form-preview__label">下载次数 </label>
                     <span class="weui-form-preview__value">{{article.download}}</span>
                 </div>
-                <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">预览 </label>
-                    <span class="weui-form-preview__value">当前暂不支持预览 </span>
-                </div>
             </div>
             <div class="weui-form-preview__ft">
                 <a (click)="toggleFavourite()" *ngIf="article.isFavourite=='1'"
@@ -43,6 +39,11 @@
                     立即下载
                 </button>
             </div>
+            <pdf-viewer [src]="pdfSrc"
+                        [page]="page"
+                        [original-size]="false"
+                        style="display: block;"
+            ></pdf-viewer>
         </div>
     </div>
 </div>

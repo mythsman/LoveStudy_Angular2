@@ -1,6 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ApiService} from './api.service';
-import {LocalService} from './local.service';
 import {School, College, Course} from './objects';
 
 import {FileUploader} from 'ng2-file-upload';
@@ -41,7 +40,7 @@ export class UploadComponent implements OnInit {
         console.log(event.target.value);
     }
 
-    constructor(private apiService: ApiService, private localService: LocalService) {
+    constructor(private apiService: ApiService) {
     }
 
     ngOnInit() {
@@ -54,13 +53,7 @@ export class UploadComponent implements OnInit {
             this.curCourse = this.curCollege.courses[0];
         });
 
-        this.localService.setTabHide(true);
-        this.localService.setTitle("我要上传");
-    }
 
-
-    ngOnDestroy() {
-        this.localService.setTabHide(false);
     }
 
     onSchoolChange(schoolName: string) {

@@ -9,28 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var local_service_1 = require('./local.service');
 var api_service_1 = require('./api.service');
 var FavouriteComponent = (function () {
-    function FavouriteComponent(localService, apiService) {
-        this.localService = localService;
+    function FavouriteComponent(apiService) {
         this.apiService = apiService;
     }
     FavouriteComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.localService.setTabHide(true);
-        this.localService.setTitle("我的收藏");
         this.apiService.getFavourite().then(function (articles) { return _this.articles = articles; });
-    };
-    FavouriteComponent.prototype.ngOnDestroy = function () {
-        this.localService.setTabHide(false);
     };
     FavouriteComponent = __decorate([
         core_1.Component({
             selector: "favourite",
             templateUrl: 'app/favourite.html'
         }), 
-        __metadata('design:paramtypes', [local_service_1.LocalService, api_service_1.ApiService])
+        __metadata('design:paramtypes', [api_service_1.ApiService])
     ], FavouriteComponent);
     return FavouriteComponent;
 }());

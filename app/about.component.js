@@ -9,24 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var local_service_1 = require('./local.service');
 var AboutComponent = (function () {
-    function AboutComponent(localService) {
-        this.localService = localService;
+    function AboutComponent() {
     }
     AboutComponent.prototype.ngOnInit = function () {
-        this.localService.setTabHide(true);
-        this.localService.setTitle("关于");
-    };
-    AboutComponent.prototype.ngOnDestroy = function () {
-        this.localService.setTabHide(false);
     };
     AboutComponent = __decorate([
         core_1.Component({
             selector: "about",
             templateUrl: 'app/about.html'
         }), 
-        __metadata('design:paramtypes', [local_service_1.LocalService])
+        __metadata('design:paramtypes', [])
     ], AboutComponent);
     return AboutComponent;
 }());

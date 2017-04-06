@@ -1,5 +1,4 @@
-import {Component, OnInit,OnDestroy} from '@angular/core';
-import {LocalService} from './local.service';
+import {Component, OnInit} from '@angular/core';
 import {ApiService} from './api.service';
 import {Article} from './objects';
 @Component({
@@ -7,18 +6,13 @@ import {Article} from './objects';
     templateUrl: 'app/favourite.html'
 
 })
-export class FavouriteComponent implements OnInit ,OnDestroy{
-    constructor(private localService: LocalService,private apiService :ApiService) {
+export class FavouriteComponent implements OnInit {
+    constructor(private apiService :ApiService) {
     }
     articles:Article[];
     ngOnInit() {
-        this.localService.setTabHide(true);
-        this.localService.setTitle("我的收藏");
-        this.apiService.getFavourite().then(articles=>this.articles=articles);
-    }
 
-    ngOnDestroy() {
-        this.localService.setTabHide(false);
+        this.apiService.getFavourite().then(articles=>  this.articles=articles);
     }
 
 } 
