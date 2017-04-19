@@ -53,7 +53,6 @@ export class NavComponent implements OnInit {
     onSelect(num: number) {
         this.module = num;
         this.title=this.titles[this.module];
-
     }
 
     onSearch() {

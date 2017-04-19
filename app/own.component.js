@@ -10,9 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var api_service_1 = require('./api.service');
+var common_1 = require('@angular/common');
 var OwnComponent = (function () {
-    function OwnComponent(apiService) {
+    function OwnComponent(apiService, location) {
         this.apiService = apiService;
+        this.location = location;
     }
     OwnComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -23,7 +25,7 @@ var OwnComponent = (function () {
             selector: "own",
             templateUrl: 'app/own.html'
         }), 
-        __metadata('design:paramtypes', [api_service_1.ApiService])
+        __metadata('design:paramtypes', [api_service_1.ApiService, common_1.Location])
     ], OwnComponent);
     return OwnComponent;
 }());

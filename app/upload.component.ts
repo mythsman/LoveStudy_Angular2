@@ -1,7 +1,7 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ApiService} from './api.service';
 import {School, College, Course} from './objects';
-
+import {Location} from '@angular/common';
 import {FileUploader} from 'ng2-file-upload';
 
 @Component({
@@ -35,12 +35,12 @@ export class UploadComponent implements OnInit {
         this.uploader.queue[0].upload(); // 开始上传
     }
 
-    selectedFileOnChanged(event:any) {
+    selectedFileOnChanged(event: any) {
         // 这里是文件选择完成后的操作处理
         console.log(event.target.value);
     }
 
-    constructor(private apiService: ApiService) {
+    constructor(private apiService: ApiService, private location: Location) {
     }
 
     ngOnInit() {

@@ -1,4 +1,5 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Location} from '@angular/common';
 import {ApiService} from './api.service';
 import {ActivatedRoute, Params} from '@angular/router';
 import {Article} from './objects';
@@ -12,8 +13,9 @@ export class ArticleDetailComponent implements OnInit {
 
     article: Article;
     pdfSrc = '/ng2-pdf-viewer/pdf-test.pdf';
-    page:number = 2;
-    constructor(private apiService: ApiService,private route: ActivatedRoute) {
+    page: number = 2;
+
+    constructor(private apiService: ApiService, private route: ActivatedRoute, private location: Location) {
     }
 
     ngOnInit() {

@@ -20,6 +20,7 @@ var favourite_component_1 = require('./favourite.component');
 var own_component_1 = require('./own.component');
 var article_detail_component_1 = require('./article-detail.component');
 var api_service_1 = require("./api.service");
+var app_component_1 = require("./app.component");
 var common_1 = require('@angular/common');
 var ng2_file_upload_1 = require('ng2-file-upload');
 var ng2_pdf_viewer_1 = require('ng2-pdf-viewer');
@@ -29,6 +30,8 @@ var routes = [
     { path: 'favourite', component: favourite_component_1.FavouriteComponent },
     { path: 'own', component: own_component_1.OwnComponent },
     { path: 'article-detail/:fid', component: article_detail_component_1.ArticleDetailComponent },
+    { path: '', redirectTo: 'nav', pathMatch: 'full' },
+    { path: 'nav', component: nav_component_1.NavComponent },
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -51,9 +54,10 @@ var AppModule = (function () {
                 favourite_component_1.FavouriteComponent,
                 own_component_1.OwnComponent,
                 article_detail_component_1.ArticleDetailComponent,
+                app_component_1.AppComponent,
             ],
             bootstrap: [
-                nav_component_1.NavComponent,
+                app_component_1.AppComponent,
             ],
             providers: [
                 api_service_1.ApiService,

@@ -11,6 +11,7 @@ import {FavouriteComponent} from './favourite.component';
 import {OwnComponent} from './own.component';
 import {ArticleDetailComponent} from './article-detail.component';
 import {ApiService} from "./api.service";
+import{AppComponent}from "./app.component"
 
 import { CommonModule }     from '@angular/common';
 import { FileUploadModule } from 'ng2-file-upload';
@@ -22,7 +23,11 @@ const routes: Routes = [
     {path: 'favourite', component: FavouriteComponent},
     {path: 'own', component: OwnComponent},
     {path: 'article-detail/:fid', component: ArticleDetailComponent},
+    {path: '', redirectTo:'nav',pathMatch: 'full'},
+    {path: 'nav', component: NavComponent},
+
 ];
+
 
 @NgModule({
     imports: [
@@ -42,9 +47,10 @@ const routes: Routes = [
         FavouriteComponent,
         OwnComponent,
         ArticleDetailComponent,
+        AppComponent,
     ],
     bootstrap: [
-        NavComponent,
+        AppComponent,
     ],
     providers: [
         ApiService,

@@ -10,10 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var api_service_1 = require('./api.service');
+var common_1 = require('@angular/common');
 var ng2_file_upload_1 = require('ng2-file-upload');
 var UploadComponent = (function () {
-    function UploadComponent(apiService) {
+    function UploadComponent(apiService, location) {
         this.apiService = apiService;
+        this.location = location;
         this.uploader = new ng2_file_upload_1.FileUploader({
             url: "http://localhost:7777/upload",
             method: "POST",
@@ -59,7 +61,7 @@ var UploadComponent = (function () {
             selector: "upload",
             templateUrl: 'app/upload.html',
         }), 
-        __metadata('design:paramtypes', [api_service_1.ApiService])
+        __metadata('design:paramtypes', [api_service_1.ApiService, common_1.Location])
     ], UploadComponent);
     return UploadComponent;
 }());

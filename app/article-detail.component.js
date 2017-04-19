@@ -9,12 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var common_1 = require('@angular/common');
 var api_service_1 = require('./api.service');
 var router_1 = require('@angular/router');
 var ArticleDetailComponent = (function () {
-    function ArticleDetailComponent(apiService, route) {
+    function ArticleDetailComponent(apiService, route, location) {
         this.apiService = apiService;
         this.route = route;
+        this.location = location;
         this.pdfSrc = '/ng2-pdf-viewer/pdf-test.pdf';
         this.page = 2;
     }
@@ -33,7 +35,7 @@ var ArticleDetailComponent = (function () {
             selector: "article-detail",
             templateUrl: 'app/article-detail.html'
         }), 
-        __metadata('design:paramtypes', [api_service_1.ApiService, router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [api_service_1.ApiService, router_1.ActivatedRoute, common_1.Location])
     ], ArticleDetailComponent);
     return ArticleDetailComponent;
 }());

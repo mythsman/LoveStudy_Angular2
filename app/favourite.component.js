@@ -10,9 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var api_service_1 = require('./api.service');
+var common_1 = require('@angular/common');
 var FavouriteComponent = (function () {
-    function FavouriteComponent(apiService) {
+    function FavouriteComponent(apiService, location) {
         this.apiService = apiService;
+        this.location = location;
     }
     FavouriteComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -23,7 +25,7 @@ var FavouriteComponent = (function () {
             selector: "favourite",
             templateUrl: 'app/favourite.html'
         }), 
-        __metadata('design:paramtypes', [api_service_1.ApiService])
+        __metadata('design:paramtypes', [api_service_1.ApiService, common_1.Location])
     ], FavouriteComponent);
     return FavouriteComponent;
 }());
