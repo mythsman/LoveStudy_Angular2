@@ -29,4 +29,10 @@ var User = (function () {
     return User;
 }());
 exports.User = User;
+var State = (function () {
+    function State() {
+    }
+    return State;
+}());
+exports.State = State;
 //# sourceMappingURL=objects.js.map

@@ -9,17 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var common_1 = require('@angular/common');
 var AboutComponent = (function () {
-    function AboutComponent() {
+    function AboutComponent(location) {
+        this.location = location;
     }
-    AboutComponent.prototype.ngOnInit = function () {
-    };
     AboutComponent = __decorate([
         core_1.Component({
             selector: "about",
             templateUrl: 'app/about.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [common_1.Location])
     ], AboutComponent);
     return AboutComponent;
 }());

@@ -11,11 +11,12 @@ import {FavouriteComponent} from './favourite.component';
 import {OwnComponent} from './own.component';
 import {ArticleDetailComponent} from './article-detail.component';
 import {ApiService} from "./api.service";
+import {SaveStateService} from "./save-state.service"
 import{AppComponent}from "./app.component"
 
-import { CommonModule }     from '@angular/common';
-import { FileUploadModule } from 'ng2-file-upload';
-import { PdfViewerComponent } from 'ng2-pdf-viewer';
+import {CommonModule}     from '@angular/common';
+import {FileUploadModule} from 'ng2-file-upload';
+import {PdfViewerComponent} from 'ng2-pdf-viewer';
 
 const routes: Routes = [
     {path: 'about', component: AboutComponent},
@@ -23,7 +24,7 @@ const routes: Routes = [
     {path: 'favourite', component: FavouriteComponent},
     {path: 'own', component: OwnComponent},
     {path: 'article-detail/:fid', component: ArticleDetailComponent},
-    {path: '', redirectTo:'nav',pathMatch: 'full'},
+    {path: '', redirectTo: 'nav', pathMatch: 'full'},
     {path: 'nav', component: NavComponent},
 
 ];
@@ -54,8 +55,10 @@ const routes: Routes = [
     ],
     providers: [
         ApiService,
+        SaveStateService,
     ]
 })
 export class AppModule {
+
 }
 

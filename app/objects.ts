@@ -28,3 +28,13 @@ export class User{
 	level:string;
 	point:string;
 }
+
+export class State{
+	module:number;
+	articles: Article[];
+	schools: School[];
+	curSchool: School;
+	curCollege: College;
+	curCourse: Course;
+	user:User;
+}

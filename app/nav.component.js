@@ -10,68 +10,74 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var api_service_1 = require('./api.service');
+var objects_1 = require('./objects');
+var save_state_service_1 = require("./save-state.service");
 var NavComponent = (function () {
-    function NavComponent(apiService) {
+    function NavComponent(apiService, saveStateService) {
         this.apiService = apiService;
+        this.saveStateService = saveStateService;
         this.titles = [
             "悦学首页",
             "悦学文库",
             "我的设置",
         ];
-        this.title = "";
     }
     NavComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.module = 0;
-        this.title = this.titles[this.module];
-        new Swiper('.swiper-container', {
-            direction: 'horizontal',
-            loop: true,
-            autoplay: 2000,
-            autoplayDisableOnInteraction: false,
-            pagination: '.swiper-pagination',
-            paginationClickable: true,
-            observer: true,
-        });
-        this.apiService.getList().then(function (list) {
-            _this.schools = list;
-            _this.curSchool = _this.schools[0];
-            _this.curCollege = _this.curSchool.colleges[0];
-            _this.curCourse = _this.curCollege.courses[0];
-        });
-        this.updateUser();
+        var storedState = this.saveStateService.getState();
+        if (!storedState) {
+            this.state = new objects_1.State();
+            this.saveStateService.setState(this.state);
+            this.state.module = 0;
+            var p1 = this.apiService.getList().then(function (list) {
+                _this.state.schools = list;
+                _this.state.curSchool = _this.state.schools[0];
+                _this.state.curCollege = _this.state.curSchool.colleges[0];
+                _this.state.curCourse = _this.state.curCollege.courses[0];
+            });
+            var p2 = this.apiService.getUser().then(function (user) {
+                _this.state.user = user;
+            });
+            var pall = Promise.all([p1, p2]).then(function (success) {
+                new Swiper('.swiper-container', {
+                    direction: 'horizontal',
+                    loop: true,
+                    autoplay: 2000,
+                    autoplayDisableOnInteraction: false,
+                    pagination: '.swiper-pagination',
+                    paginationClickable: true,
+                    observer: true,
+                });
+            });
+        }
+        else {
+            this.state = storedState;
+        }
     };
     NavComponent.prototype.onSelect = function (num) {
-        this.module = num;
-        this.title = this.titles[this.module];
+        this.state.module = num;
     };
     NavComponent.prototype.onSearch = function () {
         var _this = this;
-        this.apiService.getArticles(this.curSchool.name, this.curCollege.name, this.curCourse.name).then(function (articles) {
-            _this.articles = articles;
+        this.apiService.getArticles(this.state.curSchool.name, this.state.curCollege.name, this.state.curCourse.name).then(function (articles) {
+            _this.state.articles = articles;
         });
     };
     NavComponent.prototype.onSchoolChange = function (schoolName) {
-        this.curSchool = this.schools.find(function (op) { return op.name == schoolName; });
+        this.state.curSchool = this.state.schools.find(function (op) { return op.name == schoolName; });
     };
     NavComponent.prototype.onCollegeChange = function (collegeName) {
-        this.curCollege = this.curSchool.colleges.find(function (op) { return op.name == collegeName; });
+        this.state.curCollege = this.state.curSchool.colleges.find(function (op) { return op.name == collegeName; });
     };
     NavComponent.prototype.onCourseChange = function (courseName) {
-        this.curCourse = this.curCollege.courses.find(function (op) { return op.name == courseName; });
-    };
-    NavComponent.prototype.updateUser = function () {
-        var _this = this;
-        this.apiService.getUser().then(function (user) {
-            _this.user = user;
-        });
+        this.state.curCourse = this.state.curCollege.courses.find(function (op) { return op.name == courseName; });
     };
     NavComponent = __decorate([
         core_1.Component({
             selector: 'nav',
             templateUrl: 'app/nav.html',
         }), 
-        __metadata('design:paramtypes', [api_service_1.ApiService])
+        __metadata('design:paramtypes', [api_service_1.ApiService, save_state_service_1.SaveStateService])
     ], NavComponent);
     return NavComponent;
 }());

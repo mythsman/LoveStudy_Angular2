@@ -1,5 +1,5 @@
 node_modules/
 .idea/
 npm-debug.log
-*.js
-*.map
+app/*.js
+app/*.map

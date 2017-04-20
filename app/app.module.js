@@ -20,6 +20,7 @@ var favourite_component_1 = require('./favourite.component');
 var own_component_1 = require('./own.component');
 var article_detail_component_1 = require('./article-detail.component');
 var api_service_1 = require("./api.service");
+var save_state_service_1 = require("./save-state.service");
 var app_component_1 = require("./app.component");
 var common_1 = require('@angular/common');
 var ng2_file_upload_1 = require('ng2-file-upload');
@@ -61,6 +62,7 @@ var AppModule = (function () {
             ],
             providers: [
                 api_service_1.ApiService,
+                save_state_service_1.SaveStateService,
             ]
         }), 
         __metadata('design:paramtypes', [])
