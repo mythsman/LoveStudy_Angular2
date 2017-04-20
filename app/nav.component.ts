@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {ApiService} from './api.service';
 import {School, College, Course, Article, User, State} from './objects';
 import {SaveStateService} from "./save-state.service"
@@ -12,7 +12,7 @@ declare var Swiper: any;
     templateUrl: 'app/nav.html',
 })
 
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit,AfterViewInit {
 
     titles = [
         "悦学首页",
@@ -43,19 +43,26 @@ export class NavComponent implements OnInit {
                 this.state.user = user;
             });
             let pall = Promise.all([p1, p2]).then(success => {
-                new Swiper('.swiper-container', {
-                    direction: 'horizontal',
-                    loop: true,
-                    autoplay: 2000,
-                    autoplayDisableOnInteraction: false,
-                    pagination: '.swiper-pagination',
-                    paginationClickable: true,
-                    observer: true,
-                });
+
             })
         } else {
             this.state = storedState;
         }
+    }
+
+    ngAfterViewInit() {
+        setTimeout(() => {
+            new Swiper('.swiper-container', {
+                direction: 'horizontal',
+                loop: true,
+                autoplay: 2000,
+                autoplayDisableOnInteraction: false,
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                observer: true,
+            })
+        }, 1000)
+
     }
 
     onSelect(num: number) {

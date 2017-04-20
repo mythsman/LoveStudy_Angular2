@@ -39,20 +39,24 @@ var NavComponent = (function () {
                 _this.state.user = user;
             });
             var pall = Promise.all([p1, p2]).then(function (success) {
-                new Swiper('.swiper-container', {
-                    direction: 'horizontal',
-                    loop: true,
-                    autoplay: 2000,
-                    autoplayDisableOnInteraction: false,
-                    pagination: '.swiper-pagination',
-                    paginationClickable: true,
-                    observer: true,
-                });
             });
         }
         else {
             this.state = storedState;
         }
+    };
+    NavComponent.prototype.ngAfterViewInit = function () {
+        setTimeout(function () {
+            new Swiper('.swiper-container', {
+                direction: 'horizontal',
+                loop: true,
+                autoplay: 2000,
+                autoplayDisableOnInteraction: false,
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                observer: true,
+            });
+        }, 1000);
     };
     NavComponent.prototype.onSelect = function (num) {
         this.state.module = num;
