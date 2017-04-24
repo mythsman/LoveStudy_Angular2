@@ -14,14 +14,17 @@ require('rxjs/add/operator/toPromise');
 var ApiService = (function () {
     function ApiService(http) {
         this.http = http;
-        this.getListUrl = "http://localhost/getList";
+        // private getListUrl = "http://localhost/getList";
+        this.getListUrl = "http://localhost:8080/LoveStudy/common";
         this.getUserUrl = "http://localhost/getUser";
-        this.getArticlesUrl = "http://localhost/getArticles";
-        this.getArticleUrl = "http://localhost/getArticle";
+        //private getArticlesUrl = "http://localhost/getArticles";
+        this.getArticlesUrl = "http://localhost:8080/LoveStudy/file?oprateType=getArticles";
+        // private getArticleUrl = "http://localhost/getArticle";
+        this.getArticleUrl = "http://localhost:8080/LoveStudy/file?oprateType=getArticle";
         this.toggleFavouriteUrl = "http://localhost/toggleFavourite";
         this.getFavouriteUrl = "http://localhost/getFavourite";
         this.getUploadedUrl = "http://localhost/getUploaded";
-        this.Uid = "32";
+        this.Uid = "wspage3";
     }
     ApiService.prototype.handleError = function (error) {
         return Promise.reject(error.message || error);
@@ -39,13 +42,13 @@ var ApiService = (function () {
             .catch(this.handleError);
     };
     ApiService.prototype.getArticles = function (schoolName, collegeName, courseName) {
-        return this.http.get(this.getArticlesUrl + "?school=" + schoolName + "&college=" + collegeName + "&course=" + courseName)
+        return this.http.get(this.getArticlesUrl + "&school=" + schoolName + "&college=" + collegeName + "&course=" + courseName)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     ApiService.prototype.getArticle = function (fid) {
-        return this.http.get(this.getArticleUrl + "?fid=" + fid)
+        return this.http.get(this.getArticleUrl + "&fid=" + fid)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);

@@ -69,6 +69,7 @@ var NavComponent = (function () {
     };
     NavComponent.prototype.onSchoolChange = function (schoolName) {
         this.state.curSchool = this.state.schools.find(function (op) { return op.name == schoolName; });
+        this.onCollegeChange(this.state.curSchool.colleges[0].name);
     };
     NavComponent.prototype.onCollegeChange = function (collegeName) {
         this.state.curCollege = this.state.curSchool.colleges.find(function (op) { return op.name == collegeName; });

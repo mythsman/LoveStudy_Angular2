@@ -77,6 +77,7 @@ export class NavComponent implements OnInit,AfterViewInit {
 
     onSchoolChange(schoolName: string) {
         this.state.curSchool = this.state.schools.find(op => op.name == schoolName);
+        this.onCollegeChange(this.state.curSchool.colleges[0].name);
     }
 
     onCollegeChange(collegeName: string) {

@@ -5,15 +5,21 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ApiService {
-    private getListUrl = "http://localhost/getList";
+    // private getListUrl = "http://localhost/getList";
+    private getListUrl = "http://localhost:8080/LoveStudy/common";
+
     private getUserUrl = "http://localhost/getUser";
-    private getArticlesUrl = "http://localhost/getArticles";
-    private getArticleUrl = "http://localhost/getArticle";
+    //private getArticlesUrl = "http://localhost/getArticles";
+    private getArticlesUrl = "http://localhost:8080/LoveStudy/file?oprateType=getArticles";
+
+    // private getArticleUrl = "http://localhost/getArticle";
+    private getArticleUrl = "http://localhost:8080/LoveStudy/file?oprateType=getArticle";
+
     private toggleFavouriteUrl = "http://localhost/toggleFavourite";
     private getFavouriteUrl = "http://localhost/getFavourite";
     private getUploadedUrl = "http://localhost/getUploaded";
 
-    Uid="32";
+    Uid="wspage3";
 
     constructor(private http: Http) {
     }
@@ -37,14 +43,14 @@ export class ApiService {
     }
 
     getArticles(schoolName: string, collegeName: string, courseName: string): Promise<Article[]> {
-        return this.http.get(this.getArticlesUrl + "?school=" + schoolName + "&college=" + collegeName + "&course=" + courseName)
+        return this.http.get(this.getArticlesUrl + "&school=" + schoolName + "&college=" + collegeName + "&course=" + courseName)
             .toPromise()
             .then(response => response.json() as Article[])
             .catch(this.handleError);
     }
 
     getArticle(fid: string): Promise<Article> {
-        return this.http.get(this.getArticleUrl + "?fid=" + fid)
+        return this.http.get(this.getArticleUrl + "&fid=" + fid)
             .toPromise()
             .then(response => response.json() as Article)
             .catch(this.handleError);
