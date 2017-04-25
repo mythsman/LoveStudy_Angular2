@@ -22,6 +22,7 @@ var article_detail_component_1 = require('./article-detail.component');
 var api_service_1 = require("./api.service");
 var save_state_service_1 = require("./save-state.service");
 var app_component_1 = require("./app.component");
+var login_component_1 = require("./login.component");
 var common_1 = require('@angular/common');
 var ng2_file_upload_1 = require('ng2-file-upload');
 var ng2_pdf_viewer_1 = require('ng2-pdf-viewer');
@@ -33,6 +34,7 @@ var routes = [
     { path: 'article-detail/:fid', component: article_detail_component_1.ArticleDetailComponent },
     { path: '', redirectTo: 'nav', pathMatch: 'full' },
     { path: 'nav', component: nav_component_1.NavComponent },
+    { path: 'login/:uid', component: login_component_1.LoginComponent },
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -56,6 +58,7 @@ var AppModule = (function () {
                 own_component_1.OwnComponent,
                 article_detail_component_1.ArticleDetailComponent,
                 app_component_1.AppComponent,
+                login_component_1.LoginComponent,
             ],
             bootstrap: [
                 app_component_1.AppComponent,

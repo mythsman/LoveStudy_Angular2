@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var api_service_1 = require('./api.service');
-var objects_1 = require('./objects');
+var core_1 = require("@angular/core");
+var api_service_1 = require("./api.service");
+var objects_1 = require("./objects");
 var save_state_service_1 = require("./save-state.service");
 var NavComponent = (function () {
     function NavComponent(apiService, saveStateService) {
@@ -24,10 +24,10 @@ var NavComponent = (function () {
     }
     NavComponent.prototype.ngOnInit = function () {
         var _this = this;
-        var storedState = this.saveStateService.getState();
+        var storedState = this.saveStateService.state;
         if (!storedState) {
             this.state = new objects_1.State();
-            this.saveStateService.setState(this.state);
+            this.saveStateService.state = this.state;
             this.state.module = 0;
             var p1 = this.apiService.getList().then(function (list) {
                 _this.state.schools = list;

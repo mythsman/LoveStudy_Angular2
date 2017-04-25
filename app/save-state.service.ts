@@ -7,14 +7,7 @@ import {State} from "./objects"
 @Injectable()
 export class SaveStateService {
 
-    private state: State;
+    public state: State;
 
-    setState(state: State) {
-        this.state = state;
-    }
-
-    getState(): State {
-        return this.state;
-    }
 
 }

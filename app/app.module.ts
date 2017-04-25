@@ -12,7 +12,8 @@ import {OwnComponent} from './own.component';
 import {ArticleDetailComponent} from './article-detail.component';
 import {ApiService} from "./api.service";
 import {SaveStateService} from "./save-state.service"
-import{AppComponent}from "./app.component"
+import {AppComponent}from "./app.component"
+import {LoginComponent} from "./login.component";
 
 import {CommonModule}     from '@angular/common';
 import {FileUploadModule} from 'ng2-file-upload';
@@ -26,7 +27,7 @@ const routes: Routes = [
     {path: 'article-detail/:fid', component: ArticleDetailComponent},
     {path: '', redirectTo: 'nav', pathMatch: 'full'},
     {path: 'nav', component: NavComponent},
-
+    {path: 'login/:uid', component: LoginComponent},
 ];
 
 
@@ -49,6 +50,7 @@ const routes: Routes = [
         OwnComponent,
         ArticleDetailComponent,
         AppComponent,
+        LoginComponent,
     ],
     bootstrap: [
         AppComponent,

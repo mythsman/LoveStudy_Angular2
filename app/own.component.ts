@@ -2,6 +2,7 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ApiService} from './api.service';
 import {Article} from "./objects";
 import {Location} from '@angular/common';
+
 @Component({
     selector: "own",
     templateUrl: 'app/own.html'

@@ -1,9 +1,8 @@
-import {Component, OnInit, AfterViewInit} from '@angular/core';
-import {ApiService} from './api.service';
-import {School, College, Course, Article, User, State} from './objects';
-import {SaveStateService} from "./save-state.service"
-import {isUndefined} from "util";
-import {SIGUNUSED} from "constants";
+import {Component, OnInit, AfterViewInit} from "@angular/core";
+import {ApiService} from "./api.service";
+import {State} from "./objects";
+import {SaveStateService} from "./save-state.service";
+
 
 declare var Swiper: any;
 
@@ -27,10 +26,12 @@ export class NavComponent implements OnInit,AfterViewInit {
     }
 
     ngOnInit(): void {
-        let storedState = this.saveStateService.getState();
+        let storedState = this.saveStateService.state;
+
         if (!storedState) {
             this.state = new State();
-            this.saveStateService.setState(this.state);
+
+            this.saveStateService.state = this.state;
             this.state.module = 0;
 
             let p1 = this.apiService.getList().then(list => {

@@ -1,27 +1,30 @@
-import {Injectable} from '@angular/core';
-import {Article, School, College, Course, User} from './objects';
-import {Http} from '@angular/http';
-import 'rxjs/add/operator/toPromise';
+import {Injectable} from "@angular/core";
+import {Article, School, User} from "./objects";
+import {Http} from "@angular/http";
+import "rxjs/add/operator/toPromise";
+import {SaveStateService} from './save-state.service'
 
 @Injectable()
 export class ApiService {
-    // private getListUrl = "http://localhost/getList";
-    private getListUrl = "http://localhost:8080/LoveStudy/common";
 
-    private getUserUrl = "http://localhost/getUser";
-    //private getArticlesUrl = "http://localhost/getArticles";
-    private getArticlesUrl = "http://localhost:8080/LoveStudy/file?oprateType=getArticles";
+    private getListUrl = "http://www.wspage3.com/LoveStudy/common";
 
-    // private getArticleUrl = "http://localhost/getArticle";
-    private getArticleUrl = "http://localhost:8080/LoveStudy/file?oprateType=getArticle";
+    private getUserUrl = "http://www.wspage3.com/LoveStudy/user?oprateType=getUser";
 
-    private toggleFavouriteUrl = "http://localhost/toggleFavourite";
-    private getFavouriteUrl = "http://localhost/getFavourite";
-    private getUploadedUrl = "http://localhost/getUploaded";
+    private getArticlesUrl = "http://www.wspage3.com/LoveStudy/file?oprateType=getArticles";
 
-    Uid="wspage3";
+    private getArticleUrl = "http://www.wspage3.com/LoveStudy/file?oprateType=getArticle";
+
+    private toggleFavouriteUrl = "http://www.wspage3.com/LoveStudy/user?oprateType=toggleFavourite";
+
+    private getFavouriteUrl = "http://www.wspage3.com/LoveStudy/user?oprateType=getFavourite";
+
+    private getUploadedUrl = "http://www.wspage3.com/LoveStudy/user?oprateType=getUploaded";
+
+    public Uid = "";
 
     constructor(private http: Http) {
+
     }
 
     private handleError(error: any): Promise<any> {
@@ -29,7 +32,8 @@ export class ApiService {
     }
 
     getUser(): Promise<User> {
-        return this.http.get(this.getUserUrl + "?uid=" + this.Uid)
+        
+        return this.http.get(this.getUserUrl + "&uid=" + this.Uid)
             .toPromise()
             .then(response => response.json() as User)
             .catch(this.handleError);
@@ -57,21 +61,21 @@ export class ApiService {
     }
 
     toggleFavourite(fid: string) {
-        return this.http.get(this.toggleFavouriteUrl + "?uid=" +  this.Uid + "&fid=" + fid)
+        return this.http.get(this.toggleFavouriteUrl + "&uid=" + this.Uid + "&fid=" + fid)
             .toPromise()
             .then()
             .catch(this.handleError);
     }
 
     getFavourite(): Promise<Article[]> {
-        return this.http.get(this.getFavouriteUrl + "?uid=" +  this.Uid)
+        return this.http.get(this.getFavouriteUrl + "&uid=" + this.Uid)
             .toPromise()
             .then(response => response.json() as Article[])
             .catch(this.handleError);
     }
 
     getUploaded(): Promise<Article[]> {
-        return this.http.get(this.getUploadedUrl + "?uid=" +  this.Uid)
+        return this.http.get(this.getUploadedUrl + "&uid=" + this.Uid)
             .toPromise()
             .then(response => response.json() as Article[])
             .catch(this.handleError);

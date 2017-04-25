@@ -8,29 +8,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+require("rxjs/add/operator/toPromise");
 var ApiService = (function () {
     function ApiService(http) {
         this.http = http;
-        // private getListUrl = "http://localhost/getList";
-        this.getListUrl = "http://localhost:8080/LoveStudy/common";
-        this.getUserUrl = "http://localhost/getUser";
-        //private getArticlesUrl = "http://localhost/getArticles";
-        this.getArticlesUrl = "http://localhost:8080/LoveStudy/file?oprateType=getArticles";
-        // private getArticleUrl = "http://localhost/getArticle";
-        this.getArticleUrl = "http://localhost:8080/LoveStudy/file?oprateType=getArticle";
-        this.toggleFavouriteUrl = "http://localhost/toggleFavourite";
-        this.getFavouriteUrl = "http://localhost/getFavourite";
-        this.getUploadedUrl = "http://localhost/getUploaded";
-        this.Uid = "wspage3";
+        this.getListUrl = "http://www.wspage3.com/LoveStudy/common";
+        this.getUserUrl = "http://www.wspage3.com/LoveStudy/user?oprateType=getUser";
+        this.getArticlesUrl = "http://www.wspage3.com/LoveStudy/file?oprateType=getArticles";
+        this.getArticleUrl = "http://www.wspage3.com/LoveStudy/file?oprateType=getArticle";
+        this.toggleFavouriteUrl = "http://www.wspage3.com/LoveStudy/user?oprateType=toggleFavourite";
+        this.getFavouriteUrl = "http://www.wspage3.com/LoveStudy/user?oprateType=getFavourite";
+        this.getUploadedUrl = "http://www.wspage3.com/LoveStudy/user?oprateType=getUploaded";
+        this.Uid = "";
     }
     ApiService.prototype.handleError = function (error) {
         return Promise.reject(error.message || error);
     };
     ApiService.prototype.getUser = function () {
-        return this.http.get(this.getUserUrl + "?uid=" + this.Uid)
+        return this.http.get(this.getUserUrl + "&uid=" + this.Uid)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -54,19 +51,19 @@ var ApiService = (function () {
             .catch(this.handleError);
     };
     ApiService.prototype.toggleFavourite = function (fid) {
-        return this.http.get(this.toggleFavouriteUrl + "?uid=" + this.Uid + "&fid=" + fid)
+        return this.http.get(this.toggleFavouriteUrl + "&uid=" + this.Uid + "&fid=" + fid)
             .toPromise()
             .then()
             .catch(this.handleError);
     };
     ApiService.prototype.getFavourite = function () {
-        return this.http.get(this.getFavouriteUrl + "?uid=" + this.Uid)
+        return this.http.get(this.getFavouriteUrl + "&uid=" + this.Uid)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     ApiService.prototype.getUploaded = function () {
-        return this.http.get(this.getUploadedUrl + "?uid=" + this.Uid)
+        return this.http.get(this.getUploadedUrl + "&uid=" + this.Uid)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
