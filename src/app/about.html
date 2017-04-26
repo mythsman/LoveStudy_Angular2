@@ -1,0 +1,28 @@
+<div class="weui-tab">
+    <div class="weui-navbar">
+        <div class="weui-navbar__item weui-flex" style="background-color:rgb(32,43,57);color:white">
+            <a (click)="goBack();" href="javascript:;" class="weui-btn weui-btn_mini weui-btn_warn"
+               style="background-color:#303b49;" >
+                返回
+            </a>
+            <div class="weui-flex__item weui-btn_mini">
+               关于
+            </div>
+            <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_warn"
+               style="background-color:#303b49;" [style.visibility]="'hidden'">
+                关闭
+            </a>
+        </div>
+    </div>
+    <div class="weui-tab__panel" style="background-color:#ebebf1">
+
+        <article class="weui_article" style="background-color: white;height:100%">
+            <br>
+            <br>
+            <section align="center">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;这里是关于项目的介绍</p>
+            </section>
+
+        </article>
+    </div>
+</div>

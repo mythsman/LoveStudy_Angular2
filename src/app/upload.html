@@ -1,0 +1,114 @@
+<div class="weui-tab">
+    <div class="weui-navbar">
+        <div class="weui-navbar__item weui-flex" style="background-color:rgb(32,43,57);color:white">
+            <a (click)="goBack()" href="javascript:;" class="weui-btn weui-btn_mini weui-btn_warn"
+               style="background-color:#303b49;">
+                返回
+            </a>
+            <div class="weui-flex__item weui-btn_mini">
+                文档上传
+            </div>
+            <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_warn"
+               style="background-color:#303b49;" [style.visibility]="'hidden'">
+                关闭
+            </a>
+        </div>
+    </div>
+    <div class="weui-tab__panel" style="background-color:#ebebf1">
+        <div class="weui-cells__title">
+            请选择课程
+        </div>
+        <div class="weui-cells">
+            <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">
+                        当前学校
+                    </label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select *ngIf="schools" class="weui-select" name="searchSchool"
+                            (change)="onSchoolChange($event.target.value)" dir="rtl">
+                        <option *ngFor="let school of schools" [value]="school.name">{{school.name}}</option>
+                    </select>
+                    <select *ngIf="!schools" class="weui-select" (change)="onSchoolChange($event.target.value)"
+                            dir="rtl"></select>
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">
+                        当前学院
+                    </label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select *ngIf="schools" class="weui-select" name="searchCollege"
+                            (change)="onCollegeChange($event.target.value)" dir="rtl">
+                        <option *ngFor="let college of curSchool.colleges" [value]="college.name">{{college.name}}
+                        </option>
+                    </select>
+                    <select *ngIf="!schools" class="weui-select" (change)="onSchoolChange($event.target.value)"
+                            dir="rtl"></select>
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">
+                        当前课程
+                    </label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select *ngIf="schools" class="weui-select" name="searchCourse"
+                            (change)="onCourseChange($event.target.value)" dir="rtl">
+                        <option *ngFor="let course of curCollege.courses" [value]="course.name">{{course.name}}</option>
+                    </select>
+                    <select *ngIf="!schools" class="weui-select" (change)="onSchoolChange($event.target.value)"
+                            dir="rtl"></select>
+                </div>
+            </div>
+        </div>
+        <form action="http://localhost/upload" method="get" enctype="multipart/form-data">
+            <input id="file" type="file" style="display:none" onchange="$('#fileName').html($('#file').val());"
+                   ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
+            <input type="submit" style="display:none" value="Submit Comment"/>
+        </form>
+        <div class="weui-cells__title">
+            请选择文件
+        </div>
+        <div class="weui-cells">
+            <a id="chooseFileBtn" class="weui-cell weui-cell_access" href="javascript:;"
+               onclick="$('#file').click();">
+                <div class="weui-cell__bd">
+                    <p>
+                        选择文件
+                    </p>
+                </div>
+                <div id="fileName" class="weui-cell__ft">
+                </div>
+            </a>
+        </div>
+        <div class="weui-cells__title">
+            请输入标题
+        </div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" placeholder="请输入标题">
+                </div>
+            </div>
+        </div>
+        <div class="weui-cells__title">
+            请输入简介
+        </div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+								<textarea class="weui-textarea" placeholder="请输入简介" rows="3">
+								</textarea>
+                </div>
+            </div>
+        </div>
+        <a href="javascript:;" (click)="upload()" class="weui-btn weui-btn_primary">
+            确认上传
+        </a>
+    </div>
+</div>
