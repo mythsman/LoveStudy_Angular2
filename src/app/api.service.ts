@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Article, School, User} from "./objects";
 import {Http} from "@angular/http";
 import "rxjs/add/operator/toPromise";
-import {SaveStateService} from './save-state.service'
+import {Md5} from "ts-md5/dist/md5";
 
 @Injectable()
 export class ApiService {
@@ -21,6 +21,20 @@ export class ApiService {
 
     private getUploadedUrl = "http://www.wspage3.com/LoveStudy/user?oprateType=getUploaded";
 
+    // private getListUrl = "http://www.wspage3.com/LoveStudy/getList";
+    //
+    // private getUserUrl = "http://www.wspage3.com/LoveStudy/getUser";
+    //
+    // private getArticlesUrl = "http://www.wspage3.com/LoveStudy/getArticles";
+    //
+    // private getArticleUrl = "http://www.wspage3.com/LoveStudy/getArticle";
+    //
+    // private toggleFavouriteUrl = "http://www.wspage3.com/LoveStudy/toggleFavourite";
+    //
+    // private getFavouriteUrl = "http://www.wspage3.com/LoveStudy/getFavourite";
+    //
+    // private getUploadedUrl = "http://www.wspage3.com/LoveStudy/getUploaded";
+
     public Uid = "";
 
     constructor(private http: Http) {
@@ -31,9 +45,17 @@ export class ApiService {
         return Promise.reject(error.message || error);
     }
 
+    encryptUrl(url: string): string {
+        let time = new Date().getTime();
+        let signature = Md5.hashStr(url + time * 2 + 1);
+        return url + "&time=" + time + "&signature=" + signature;
+    }
+
     getUser(): Promise<User> {
-        
-        return this.http.get(this.getUserUrl + "&uid=" + this.Uid)
+
+        let url = this.getUserUrl + "&uid=" + this.Uid;
+
+        return this.http.get(this.encryptUrl(url))
             .toPromise()
             .then(response => response.json() as User)
             .catch(this.handleError);
@@ -47,35 +69,42 @@ export class ApiService {
     }
 
     getArticles(schoolName: string, collegeName: string, courseName: string): Promise<Article[]> {
-        return this.http.get(this.getArticlesUrl + "&school=" + schoolName + "&college=" + collegeName + "&course=" + courseName)
+
+        let url = this.getArticlesUrl + "&school=" + schoolName + "&college=" + collegeName + "&course=" + courseName + "&uid=" + this.Uid;
+
+        return this.http.get(this.encryptUrl(url))
             .toPromise()
             .then(response => response.json() as Article[])
             .catch(this.handleError);
     }
 
     getArticle(fid: string): Promise<Article> {
-        return this.http.get(this.getArticleUrl + "&fid=" + fid)
+        let url = this.getArticleUrl + "&fid=" + fid + "&uid=" + this.Uid;
+        return this.http.get(this.encryptUrl(url))
             .toPromise()
             .then(response => response.json() as Article)
             .catch(this.handleError);
     }
 
     toggleFavourite(fid: string) {
-        return this.http.get(this.toggleFavouriteUrl + "&uid=" + this.Uid + "&fid=" + fid)
+        let url = this.toggleFavouriteUrl + "&uid=" + this.Uid + "&fid=" + fid;
+        return this.http.get(this.encryptUrl(url))
             .toPromise()
             .then()
             .catch(this.handleError);
     }
 
     getFavourite(): Promise<Article[]> {
-        return this.http.get(this.getFavouriteUrl + "&uid=" + this.Uid)
+        let url = this.getFavouriteUrl + "&uid=" + this.Uid;
+        return this.http.get(this.encryptUrl(url))
             .toPromise()
             .then(response => response.json() as Article[])
             .catch(this.handleError);
     }
 
     getUploaded(): Promise<Article[]> {
-        return this.http.get(this.getUploadedUrl + "&uid=" + this.Uid)
+        let url = this.getUploadedUrl + "&uid=" + this.Uid;
+        return this.http.get(this.encryptUrl(url))
             .toPromise()
             .then(response => response.json() as Article[])
             .catch(this.handleError);

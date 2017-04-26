@@ -28,7 +28,7 @@ const routes: Routes = [
     {path: 'article-detail/:fid', component: ArticleDetailComponent},
     {path: '', redirectTo: 'nav', pathMatch: 'full'},
     {path: 'nav', component: NavComponent},
-    {path: 'login/:uid', component: LoginComponent},
+    {path: 'login/:uid/:time/:signature', component: LoginComponent},
 ];
 
 

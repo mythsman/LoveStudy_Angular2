@@ -12,7 +12,7 @@ import {Article} from './objects';
 export class ArticleDetailComponent implements OnInit {
 
     article: Article;
-    pdfSrc = '/ng2-pdf-viewer/pdf-test.pdf';
+    pdfSrc = "";
     page: number = 2;
 
     constructor(private apiService: ApiService, private route: ActivatedRoute, private location: Location) {
@@ -21,7 +21,11 @@ export class ArticleDetailComponent implements OnInit {
     ngOnInit() {
 
         this.route.params.subscribe(params => {
-            this.apiService.getArticle(params['fid']).then(article => this.article = article);
+            this.apiService.getArticle(params['fid']).then(article => {
+                this.article = article;
+                this.pdfSrc = this.article.download;
+            });
+
         });
     }
 
@@ -30,7 +34,7 @@ export class ArticleDetailComponent implements OnInit {
         this.article.isFavourite = (this.article.isFavourite == '0' ? '1' : '0');
     }
 
-    goBack(){
+    goBack() {
         this.location.back();
     }
 
