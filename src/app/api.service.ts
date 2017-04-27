@@ -21,19 +21,6 @@ export class ApiService {
 
     private getUploadedUrl = "http://www.wspage3.com/LoveStudy/user?oprateType=getUploaded";
 
-    // private getListUrl = "http://www.wspage3.com/LoveStudy/getList";
-    //
-    // private getUserUrl = "http://www.wspage3.com/LoveStudy/getUser";
-    //
-    // private getArticlesUrl = "http://www.wspage3.com/LoveStudy/getArticles";
-    //
-    // private getArticleUrl = "http://www.wspage3.com/LoveStudy/getArticle";
-    //
-    // private toggleFavouriteUrl = "http://www.wspage3.com/LoveStudy/toggleFavourite";
-    //
-    // private getFavouriteUrl = "http://www.wspage3.com/LoveStudy/getFavourite";
-    //
-    // private getUploadedUrl = "http://www.wspage3.com/LoveStudy/getUploaded";
 
     public Uid = "";
 

@@ -16,7 +16,9 @@
     </div>
 
     <div class="weui-tab__panel" style="background-color:#ebebf1">
-
+        <div *ngIf="!article">
+            Loading....
+        </div>
         <div *ngIf="article" class=" preview">
             <div class="page__bd">
                 <div class="weui-form-preview">
