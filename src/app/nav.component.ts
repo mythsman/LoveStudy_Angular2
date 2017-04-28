@@ -14,8 +14,8 @@ declare var Swiper: any;
 export class NavComponent implements OnInit,AfterViewInit {
 
     titles = [
-        "悦学首页",
-        "悦学文库",
+        "畅学首页",
+        "畅学文库",
         "我的设置",
     ]
 

@@ -7,7 +7,7 @@ import {Md5} from "ts-md5/dist/md5";
 @Injectable()
 export class ApiService {
 
-    private getListUrl = "http://www.wspage3.com/LoveStudy/common";
+    private getListUrl = "http://www.wspage3.com/LoveStudy/common?oprateType=getList";
 
     private getUserUrl = "http://www.wspage3.com/LoveStudy/user?oprateType=getUser";
 
@@ -34,7 +34,7 @@ export class ApiService {
 
     encryptUrl(url: string): string {
         let time = new Date().getTime();
-        let signature = Md5.hashStr(url + time * 2 + 1);
+        let signature = Md5.hashStr(url.substr(7, url.length - 7) + (time * 2 + 1));
         return url + "&time=" + time + "&signature=" + signature;
     }
 
